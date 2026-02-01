@@ -47,7 +47,9 @@ class SessionManager:
 
     async def add_to_history(self, role, content):
         async with self.lock:
-            self.history.append({"role": role, "content": content})
+            safe_content = str(content) if content is not None else ""
+            self.history.append({"role": role, "content": safe_content})
+
             if role == "user":
                 self.pending_count += 1
             self.last_activity = time.time()

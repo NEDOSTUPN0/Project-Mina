@@ -4,4 +4,3 @@ config.txt
 .env
 data/
 __pycache__
-session_state.json
